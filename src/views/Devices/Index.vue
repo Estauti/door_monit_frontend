@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -59,35 +61,22 @@ export default {
           label: 'Authorizado'
         },
       ],
-      devices: [
-        {
-          opened: true,
-          mac: "abc123",
-          name: "Quarto",
-          created_at: '14/05/2020',
-          active: true,
-          authorized: true
-        },
-        {
-          opened: false,
-          mac: "abc555",
-          name: "Janela",
-          created_at: '14/06/2020',
-          active: true,
-          authorized: true
-        },
-        {
-          opened: true,
-          mac: "bbb123",
-          name: "Porta dos fundos",
-          created_at: '01/05/2020',
-          active: false,
-          authorized: false
-        },
-      ]
+      devices: []
     }
   },
+  created() {
+    this.getDevices();
+  },
   methods: {
+    getDevices() {
+      axios.get('http://localhost:3000/api/devices')
+      .then(response => {
+        this.devices = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    },
     formatOpened(opened) {
       if (opened) {
         return 'Aberto';
