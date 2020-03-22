@@ -14,6 +14,10 @@
         </b-badge>
       </template>
 
+      <template v-slot:cell(created_at)="row">
+        {{ $moment(row.value).format("DD/MM/YYYY hh:mm:ss") }}
+      </template>
+
       <template v-slot:cell(active)="row">
         <b-badge :variant="formatVariant(row.value)">
           {{ formatYesNo(row.value) }}

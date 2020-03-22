@@ -10,6 +10,13 @@ Vue.use(BootstrapVue)
 
 Vue.router = router
 
+const moment = require('moment')
+require('moment/locale/pt')
+
+Vue.use(require('vue-moment'), {
+  moment
+})
+
 new Vue({
   router,
   render: h => h(App),
