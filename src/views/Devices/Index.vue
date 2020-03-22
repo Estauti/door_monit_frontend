@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>Tela de listagem de Dispositivos</h1>
+    <h1>Listagem de Dispositivos</h1>
 
     <b-table 
       striped 
       hover 
       :items="devices"
       :fields=devices_fields
+      class="mt-4"
     >
       <template v-slot:cell(opened)="row">
         <b-badge :variant="formatOpenedVariant(row.value)">
