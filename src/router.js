@@ -10,6 +10,11 @@ let router = new Router({
       path: '/devices',
       name: 'DevicesIndex',
       component: () => import('./views/Devices/Index.vue')
+    },
+    {
+      path: '/measurements',
+      name: 'MeasurementsIndex',
+      component: () => import('./views/measurements/Index.vue')
     }
   ]
 })
