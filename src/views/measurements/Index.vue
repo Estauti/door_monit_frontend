@@ -42,19 +42,11 @@ export default {
           label: 'Data Criação'
         }
       ],
-      measurements: [
-        {
-        "id":89,
-        "opened":true,
-        "device_id":3,
-        "created_at":"2020-03-21T00:15:04.203Z",
-        "updated_at":"2020-03-21T00:15:04.203Z"
-        }
-      ]
+      measurements: []
     }
   },
   created() {
-    // this.getMeasurements();
+     this.getMeasurements();
   },
   methods: {
     getMeasurements() {
