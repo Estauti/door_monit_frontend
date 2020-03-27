@@ -47,12 +47,12 @@ export default {
           label: "Status Porta"
         },
         {
-          key: 'mac',
-          label: 'MAC'
-        },
-        {
           key: 'name',
           label: 'Nome'
+        },
+        {
+          key: 'mac',
+          label: 'MAC'
         },
         {
           key: 'created_at',
@@ -64,7 +64,7 @@ export default {
         },
         {
           key: 'authorized',
-          label: 'Authorizado'
+          label: 'Autorizado'
         },
       ],
       devices: []
