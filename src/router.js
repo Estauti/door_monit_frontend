@@ -7,6 +7,25 @@ let router = new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'Redirect',
+      redirect: function (to) {
+        if (to.query.redirect) {
+          var path = to.query.redirect
+          delete to.query.redirect
+          return {
+            path: '/' + path,
+            query: to.query
+          }
+        } else {
+          return {
+            path: '/devices',
+            query: to.query
+          }
+        }
+      }
+    },
+    {
       path: '/devices',
       name: 'DevicesIndex',
       component: () => import('./views/Devices/Index.vue')
