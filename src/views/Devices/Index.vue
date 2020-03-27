@@ -36,6 +36,7 @@
 
 <script>
 import axios from 'axios';
+import { api_url } from '@/helpers/api_url'
 
 export default {
   data() {
@@ -74,7 +75,7 @@ export default {
   },
   methods: {
     getDevices() {
-      axios.get('http://localhost:3000/api/devices')
+      axios.get(`${api_url}/api/devices.json`)
       .then(response => {
         this.devices = response.data;
       })

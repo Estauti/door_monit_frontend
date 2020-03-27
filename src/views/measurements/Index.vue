@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios';
+import { api_url } from '@/helpers/api_url'
 
 export default {
   data() {
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     getMeasurements() {
-      axios.get('http://localhost:3000/api/measurements')
+      axios.get(`${api_url}/api/measurements.json`)
       .then(response => {
         this.measurements = response.data;
       })
