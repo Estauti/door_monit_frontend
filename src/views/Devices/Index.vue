@@ -10,9 +10,7 @@
       class="mt-4"
     >
       <template v-slot:cell(opened)="row">
-        <b-badge :variant="formatOpenedVariant(row.value)">
-          {{ formatOpened(row.value) }}
-        </b-badge>
+        <font-awesome-icon :icon="row.value ? 'door-open' : 'door-closed'" size="lg" />
       </template>
 
       <template v-slot:cell(created_at)="row">
