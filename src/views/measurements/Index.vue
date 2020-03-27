@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Medidas</h1>
+    <h1>Medições</h1>
 
     <b-table 
       striped 

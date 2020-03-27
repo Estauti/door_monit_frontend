@@ -1,7 +1,15 @@
 <template>
   <div id="app">
+    <b-navbar type="dark" variant="dark">
+      <b-navbar-brand href="#">Door-Monit</b-navbar-brand>
+
+      <b-navbar-nav>
+        <b-nav-item :to="{name: 'DevicesIndex'}">Dispositivos</b-nav-item>
+        <b-nav-item :to="{name: 'MeasurementsIndex'}">Medições</b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
     <div class="container">
-      <router-view/>
+      <router-view class="router-view"/>
     </div>
   </div>
 </template>
@@ -21,6 +29,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.router-view {
+  margin-top: 30px;;
 }
 </style>
