@@ -17,6 +17,14 @@
         {{ $moment.utc(row.value).format("DD/MM/YYYY hh:mm:ss") }}
       </template>
 
+      <template v-slot:cell(name)="row">
+        {{ row.value }}
+        <font-awesome-icon 
+          icon="edit"
+          class="cursor-pointer"
+          @click="openUpdateNameModal(row.item)" />
+      </template>
+
       <template v-slot:cell(active)="row">
         <b-form-checkbox 
           v-model="row.value" 
@@ -35,12 +43,17 @@
         ></b-form-checkbox>
       </template>
     </b-table>
+
+    <UpdateNameModal 
+      ref="update_name_modal"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { api_url } from '@/helpers/api_url'
+import UpdateNameModal from "@/components/Devices/UpdateName"
 
 export default {
   data() {
@@ -77,6 +90,9 @@ export default {
   created() {
     this.getDevices();
   },
+  components: {
+    UpdateNameModal
+  },
   methods: {
     getDevices() {
       axios.get(`${api_url}/api/devices.json`)
@@ -110,6 +126,9 @@ export default {
       .catch(error => {
         console.log(error);
       });
+    },
+    openUpdateNameModal(device) {
+      this.$refs.update_name_modal.showModal(device);
     }
   }
 }
