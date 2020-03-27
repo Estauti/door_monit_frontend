@@ -35,7 +35,7 @@ export default {
           label: "Status"
         },
         {
-          key: 'device_id',
+          key: 'device_name',
           label: 'Dispositivo'
         },
         {
