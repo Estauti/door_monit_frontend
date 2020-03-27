@@ -18,15 +18,21 @@
       </template>
 
       <template v-slot:cell(active)="row">
-        <b-badge :variant="formatVariant(row.value)">
-          {{ formatYesNo(row.value) }}
-        </b-badge>
+        <b-form-checkbox 
+          v-model="row.value" 
+          name="check-button" 
+          switch
+          @change="updateActive(row.item, !row.value)"
+        ></b-form-checkbox>
       </template>
 
       <template v-slot:cell(authorized)="row">
-        <b-badge :variant="formatVariant(row.value)">
-          {{ formatYesNo(row.value) }}
-        </b-badge>
+        <b-form-checkbox 
+          v-model="row.value" 
+          name="check-button" 
+          switch
+          @change="updateAuthorized(row.item, !row.value)"
+        ></b-form-checkbox>
       </template>
     </b-table>
   </div>
@@ -81,37 +87,29 @@ export default {
         console.log(error);
       });
     },
-    formatOpened(opened) {
-      if (opened) {
-        return 'Aberto';
-      }
-      else {
-        return 'Fechado';
-      }
+    updateActive(device, new_status) {
+      axios.put(`${api_url}/api/devices/${device.id}.json`, {
+        active: new_status
+      })
+      .then(response => {
+        const index = this.devices.findIndex(d => d.id == device.id)
+        this.devices[index] = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
     },
-    formatYesNo(status) {
-      if (status) {
-        return 'Sim';
-      }
-      else {
-        return 'Não';
-      }
-    },
-    formatOpenedVariant(opened) {
-      if (opened) {
-        return 'danger';
-      }
-      else {
-        return 'primary';
-      }
-    },
-    formatVariant(opened) {
-      if (opened) {
-        return 'primary';
-      }
-      else {
-        return 'danger';
-      }
+    updateAuthorized(device, new_status) {
+      axios.put(`${api_url}/api/devices/${device.id}.json`, {
+        authorized: new_status
+      })
+      .then(response => {
+        const index = this.devices.findIndex(d => d.id == device.id)
+        this.devices[index] = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
     }
   }
 }
