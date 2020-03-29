@@ -2,40 +2,53 @@
   <div class="center-login-box">
     <div class="login-box">
       <b-card>
-        <div class="mb-4">
-          <font-awesome-icon icon="door-open" size=4x />
-        </div>
+        <b-row>
+          <b-col>
+            <font-awesome-icon icon="door-open" size=4x />
+          </b-col>
+        </b-row>
 
-        <b-form @submit.prevent="login" class="form-horizontal form-material">
+        <b-row class="mt-4">
+          <b-col>
+            <b-form @submit.prevent="login" class="form-horizontal form-material">
 
-          <b-form-group id="emailInputGroup" label-for="emailField">
-            <b-form-input
-              id="emailField"
-              type="email"
-              v-model="user.email"
-              autocomplete="email"
-              required
-              placeholder="Digite seu e-mail"
-            ></b-form-input>
-          </b-form-group>
-          <b-form-group id="exampleInputGroup3" label-for="passwordField">
-            <b-form-input
-              id="passwordField"
-              type="password"
-              v-model="user.password"
-              autocomplete="current-password"
-              required
-              placeholder="Digite sua senha"
-            ></b-form-input>
-          </b-form-group>
+              <b-form-group id="emailInputGroup" label-for="emailField">
+                <b-form-input
+                  id="emailField"
+                  type="email"
+                  v-model="user.email"
+                  autocomplete="email"
+                  required
+                  placeholder="Digite seu e-mail"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group id="exampleInputGroup3" label-for="passwordField">
+                <b-form-input
+                  id="passwordField"
+                  type="password"
+                  v-model="user.password"
+                  autocomplete="current-password"
+                  required
+                  placeholder="Digite sua senha"
+                ></b-form-input>
+              </b-form-group>
 
-          <b-form-group>
-            <b-button
-              type="submit"
-              variant="btn btn-block btn-lg btn-primary btn-rounded"
-            >Entrar</b-button>
-          </b-form-group>
-        </b-form>
+              <b-form-group>
+                <b-button
+                  type="submit"
+                  variant="btn btn-block btn-lg btn-primary btn-rounded"
+                >Entrar</b-button>
+              </b-form-group>
+            </b-form>
+          </b-col>
+        </b-row>
+
+        <b-row class="mt-1">
+          <b-col class="text-left">
+            Ainda não é membro? 
+            <b-link :to="{name: 'SignUp'}">Criar uma conta</b-link>
+          </b-col>
+        </b-row>
       </b-card>
     </div>
   </div>

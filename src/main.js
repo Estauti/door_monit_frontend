@@ -37,7 +37,7 @@ Vue.use(require('@websanova/vue-auth'), {
     rolesVar: 'roles',
     fetchData: { url: 'auth/get_by_token', method: 'GET' },
     refreshData: { url: 'auth/refresh', method: 'GET', atInit: false },
-    registerData: { url: 'users/password', method: 'POST' },
+    registerData: { url: 'auth', method: 'POST' },
     tokenStore: ['localStorage', 'cookie']
 });
 
