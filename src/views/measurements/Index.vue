@@ -10,9 +10,7 @@
       class="mt-4"
     >
       <template v-slot:cell(opened)="row">
-        <b-badge :variant="formatOpenedVariant(row.value)">
-          {{ formatOpened(row.value) }}
-        </b-badge>
+        <font-awesome-icon :icon="row.value ? 'door-open' : 'door-closed'" size="lg" />
       </template>
 
       <template v-slot:cell(created_at)="row">
@@ -59,38 +57,6 @@ export default {
         console.log(error);
       });
     },
-    formatOpened(opened) {
-      if (opened) {
-        return 'Aberto';
-      }
-      else {
-        return 'Fechado';
-      }
-    },
-    formatYesNo(status) {
-      if (status) {
-        return 'Sim';
-      }
-      else {
-        return 'Não';
-      }
-    },
-    formatOpenedVariant(opened) {
-      if (opened) {
-        return 'danger';
-      }
-      else {
-        return 'primary';
-      }
-    },
-    formatVariant(opened) {
-      if (opened) {
-        return 'primary';
-      }
-      else {
-        return 'danger';
-      }
-    }
   }
 }
 </script>

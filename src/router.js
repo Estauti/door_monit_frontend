@@ -26,13 +26,21 @@ let router = new Router({
       }
     },
     {
+      path: '/login',
+      name: 'Login',
+      meta: { auth: false },
+      component: () => import('./views/Users/Login.vue')
+    },
+    {
       path: '/devices',
       name: 'DevicesIndex',
+      meta: { auth: true },
       component: () => import('./views/Devices/Index.vue')
     },
     {
       path: '/measurements',
       name: 'MeasurementsIndex',
+      meta: { auth: true },
       component: () => import('./views/measurements/Index.vue')
     }
   ]

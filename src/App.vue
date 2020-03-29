@@ -1,23 +1,19 @@
 <template>
   <div id="app">
-    <b-navbar type="dark" variant="dark">
-      <b-navbar-brand href="#">Door-Monit</b-navbar-brand>
-
-      <b-navbar-nav>
-        <b-nav-item :to="{name: 'DevicesIndex'}">Dispositivos</b-nav-item>
-        <b-nav-item :to="{name: 'MeasurementsIndex'}">Medições</b-nav-item>
-      </b-navbar-nav>
-    </b-navbar>
-    <div class="container">
+    <MainHeader />
+    <div class="container" v-if="$auth.ready()">
       <router-view class="router-view"/>
     </div>
   </div>
 </template>
 
 <script>
+import MainHeader from '@/components/MainHeader'
+
 export default {
   name: 'App',
   components: {
+    MainHeader
   }
 }
 </script>
