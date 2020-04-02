@@ -36,8 +36,9 @@
               <b-form-group>
                 <b-button
                   type="submit"
+                  :disabled="loading"
                   variant="btn btn-block btn-lg btn-primary btn-rounded"
-                >Entrar</b-button>
+                >Entrar <span v-if="loading"><font-awesome-icon icon="spinner" spin/></span></b-button>
               </b-form-group>
             </b-form>
           </b-col>
@@ -61,17 +62,21 @@ export default {
       user: {
         email: "",
         password: ""
-      }
+      },
+      loading:false
     };
   },
   methods: {
     login() {
+      this.loading=true
       this.$auth.login({
         params: this.user,
         success: function() {
+          this.loading=false
           // this.$toasted.info(this.$t('user_login')).goAway(1500)
         },
         error: function() {
+          this.loading=false
           this.$toasted.error("Ocorreu um erro").goAway(1500);
         },
         rememberMe: true
