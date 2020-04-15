@@ -45,7 +45,7 @@
         </b-row>
 
         <b-row class="mt-1">
-          <b-col class="text-left">
+          <b-col class="text-center">
             Ainda não é membro? 
             <b-link :to="{name: 'SignUp'}">Criar uma conta</b-link>
           </b-col>

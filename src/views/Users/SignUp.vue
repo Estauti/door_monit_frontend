@@ -57,9 +57,17 @@
               <b-form-group>
                 <b-button
                   type="submit"
+                  :disabled=allFieldsFilled()
                   variant="btn btn-block btn-lg btn-primary btn-rounded"
                 >Registrar</b-button>
               </b-form-group>
+
+                <b-row class="mt-1">
+                  <b-col class="text-center">
+                    Já tem uma conta? 
+                  <b-link :to="{name: 'Login'}">Entrar</b-link>
+                  </b-col>
+                </b-row>
             </b-form>
           </b-col>
         </b-row>
@@ -73,6 +81,7 @@ export default {
   data() {
     return {
       user: {
+        name: "",
         email: "",
         password: "",
         password_confirmation: ""
@@ -94,6 +103,16 @@ export default {
         rememberMe: true,
         redirect: {name: 'DevicesIndex'}
       });
+    },
+    allFieldsFilled() {
+      if (this.user.name && 
+          this.user.email && 
+          this.user.password && 
+          this.user.password_confirmation) {
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 };
