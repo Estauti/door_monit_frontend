@@ -90,7 +90,6 @@ export default {
   },
   methods: {
     signUp() {
-      console.log(this.user);
       this.$auth.register({
         data: this.user,
         success: function () {
