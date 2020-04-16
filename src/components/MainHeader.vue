@@ -8,7 +8,12 @@
     </b-navbar-nav>
 
     <b-navbar-nav class="ml-auto">
-    <b-dropdown id="dropdown-1" :text="$auth.user().name" class="m-md-2">
+    <b-dropdown 
+      id="user_dropdown" 
+      :text="$auth.user().name" 
+      class="m-md-2"
+      right
+    >
     <b-dropdown-item  @click="logout">Sair
       <font-awesome-icon icon="sign-out-alt" />
     </b-dropdown-item>
