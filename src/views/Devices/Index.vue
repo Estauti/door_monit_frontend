@@ -14,7 +14,7 @@
       </template>
 
       <template v-slot:cell(created_at)="row">
-        {{ $moment.utc(row.value).format("DD/MM/YYYY hh:mm:ss") }}
+        {{ $moment(row.value).format("DD/MM/YYYY HH:mm:ss") }}
       </template>
 
       <template v-slot:cell(name)="row">
