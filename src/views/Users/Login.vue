@@ -70,7 +70,7 @@ export default {
     login() {
       this.loading=true
       this.$auth.login({
-        params: this.user,
+        data: {user: this.user},
         success: function() {
           this.loading=false
           // this.$toasted.info(this.$t('user_login')).goAway(1500)

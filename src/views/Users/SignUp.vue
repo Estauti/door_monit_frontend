@@ -91,7 +91,7 @@ export default {
   methods: {
     signUp() {
       this.$auth.register({
-        data: this.user,
+        data: {user: this.user},
         success: function () {
           this.$toasted.success("Usuário criado com sucesso!")
         },
