@@ -25,12 +25,12 @@
           @click="openUpdateNameModal(row.item)" />
       </template>
 
-      <template v-slot:cell(active)="row">
+      <template v-slot:cell(in_alert)="row">
         <b-form-checkbox 
           v-model="row.value" 
           name="check-button" 
           switch
-          @change="updateActive(row.item, !row.value)"
+          @change="updateAlert(row.item, !row.value)"
         ></b-form-checkbox>
       </template>
 
@@ -76,13 +76,13 @@ export default {
           label: 'Data Criação'
         },
         {
-          key: 'active',
-          label: 'Ativo'
-        },
-        {
           key: 'authorized',
           label: 'Autorizado'
         },
+        {
+          key: 'in_alert',
+          label: 'Em Alerta'
+        }
       ],
       devices: []
     }
@@ -103,9 +103,9 @@ export default {
         console.log(error);
       });
     },
-    updateActive(device, new_status) {
+    updateAlert(device, new_status) {
       axios.put(`${api_url}/api/devices/${device.id}.json`, {
-        active: new_status
+        in_alert: new_status
       })
       .then(response => {
         const index = this.devices.findIndex(d => d.id == device.id)
