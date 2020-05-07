@@ -12,6 +12,7 @@ import { api_url } from '@/helpers/api_url.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Toasted from 'vue-toasted';
+import ActionCableVueJWT from 'actioncable-vue-jwt';
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
@@ -39,6 +40,14 @@ Vue.use(require('@websanova/vue-auth'), {
     refreshData: { url: 'auth/refresh', method: 'GET', atInit: false },
     registerData: { url: 'auth', method: 'POST' },
     tokenStore: ['localStorage', 'cookie']
+});
+
+Vue.use(ActionCableVueJWT, {
+  debug: true,
+  debugLevel: 'error',
+  connectionUrl: 'ws://localhost:3000/api/cable',
+  connectImmediately: false,
+  jwt: function() { this.$auth.token() }
 });
 
 Vue.use(Toasted, {

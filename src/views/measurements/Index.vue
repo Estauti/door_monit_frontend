@@ -47,6 +47,18 @@ export default {
   created() {
      this.getMeasurements();
   },
+  mounted() {
+    this.$cable.subscribe({
+      channel: `measurements_channel_${this.$auth.user().id}`
+    });
+  },
+  channels: {
+    ChatChannel: {
+      connected() {
+        console.log('I am connected.');
+      }
+    }
+  },
   methods: {
     getMeasurements() {
       axios.get(`${api_url}/api/measurements.json`)
