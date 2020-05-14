@@ -89,6 +89,19 @@ export default {
   },
   created() {
     this.getDevices();
+    this.$cable.subscribe({
+      channel: 'MeasurementChannel',
+      room: 'public',
+      user_id: this.$auth.user().id
+    });
+  },
+  channels: {
+    MeasurementChannel: {
+      connected() {},
+      received(data) {
+        this.deviceOpenedChanged(data.device_id, data.opened)
+      }
+    }
   },
   components: {
     UpdateNameModal
@@ -129,6 +142,11 @@ export default {
     },
     openUpdateNameModal(device) {
       this.$refs.update_name_modal.showModal(device);
+    },
+    deviceOpenedChanged(device_id, opened) {
+      let index = this.devices.findIndex(device => device.id == device_id);
+
+      this.devices[index].opened = opened
     }
   }
 }

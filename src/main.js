@@ -12,6 +12,7 @@ import { api_url } from '@/helpers/api_url.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Toasted from 'vue-toasted';
+import ActionCableVue from 'actioncable-vue';
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
@@ -26,7 +27,7 @@ Vue.use(VueAxios, axios)
 Vue.axios.defaults.baseURL = api_url + '/api/';
 
 Vue.use(require('@websanova/vue-auth'), {
-    auth: require('@websanova/vue-auth/drivers/auth/devise.js'),
+    auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
     http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
     router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
     loginData: { url: api_url + '/api/auth/sign_in', method: 'POST', redirect: '/devices', fetchUser: true },
@@ -39,6 +40,16 @@ Vue.use(require('@websanova/vue-auth'), {
     refreshData: { url: 'auth/refresh', method: 'GET', atInit: false },
     registerData: { url: 'auth', method: 'POST' },
     tokenStore: ['localStorage', 'cookie']
+});
+
+Vue.use(ActionCableVue, {
+  debug: true,
+  debugLevel: 'error',
+  connectionUrl: () => {
+    let token = localStorage.getItem('default_auth_token')
+    return `ws://localhost:3000/api/cable?jwt=${token}`
+  },
+  connectImmediately: true
 });
 
 Vue.use(Toasted, {
