@@ -19,7 +19,7 @@ let router = new Router({
           }
         } else {
           return {
-            path: '/devices',
+            path: '/home',
             query: to.query
           }
         }
@@ -36,6 +36,12 @@ let router = new Router({
       name: 'SignUp',
       meta: { auth: false },
       component: () => import('./views/Users/SignUp.vue')
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      meta: { auth: true },
+      component: () => import('./views/Home/Index.vue')
     },
     {
       path: '/devices',

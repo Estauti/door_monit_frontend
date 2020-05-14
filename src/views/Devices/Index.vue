@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Dispositivos</h1>
+    <h1 class="text-center">Dispositivos</h1>
 
     <b-table 
       striped 

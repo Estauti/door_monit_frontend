@@ -1,6 +1,6 @@
 <template>
   <b-navbar type="dark" variant="dark" v-if="$auth.check()">
-    <b-navbar-brand href="#">Door-Monit</b-navbar-brand>
+    <b-navbar-brand :to="{name: 'Home'}">Door-Monit</b-navbar-brand>
 
     <b-navbar-nav>
       <b-nav-item :to="{name: 'DevicesIndex'}">Dispositivos</b-nav-item>
