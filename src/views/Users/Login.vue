@@ -3,7 +3,7 @@
     <div class="login-box">
       <b-card>
         <b-row>
-          <b-col>
+          <b-col class="text-center">
             <font-awesome-icon icon="door-open" size=4x />
           </b-col>
         </b-row>

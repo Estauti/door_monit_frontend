@@ -1,7 +1,7 @@
 <template>
   <div class="center-login-box">
     <div class="login-box">
-      <b-card>
+      <b-card class="text-center">
         <b-row class="mt-1">
           <b-col>
             <h2>Crie sua conta abaixo</h2>
