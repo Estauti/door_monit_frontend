@@ -30,7 +30,8 @@ export default {
       measurements_fields: [
         {
           key: 'opened',
-          label: "Status"
+          label: "Status",
+          class: "text-center"
         },
         {
           key: 'device_name',

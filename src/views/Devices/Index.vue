@@ -61,7 +61,8 @@ export default {
       devices_fields: [
         {
           key: 'opened',
-          label: "Status Porta"
+          label: "Status Porta",
+          class: "text-center"
         },
         {
           key: 'name',
@@ -77,11 +78,13 @@ export default {
         },
         {
           key: 'authorized',
-          label: 'Autorizado'
+          label: 'Autorizado',
+          class: "text-center"
         },
         {
           key: 'in_alert',
-          label: 'Em Alerta'
+          label: 'Em Alerta',
+          class: "text-center"
         }
       ],
       devices: []
