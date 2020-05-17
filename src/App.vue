@@ -1,3 +1,5 @@
+<style src="./assets/styles/custom-theme.css"></style>
+
 <template>
   <div id="app">
     <MainHeader />

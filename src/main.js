@@ -13,9 +13,11 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Toasted from 'vue-toasted';
 import ActionCableVue from 'actioncable-vue';
+import Paginate from 'vuejs-paginate'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.component('paginate', Paginate)
 
 library.add(fas)
 library.add(far)
@@ -30,7 +32,7 @@ Vue.use(require('@websanova/vue-auth'), {
     auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
     http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
     router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-    loginData: { url: api_url + '/api/auth/sign_in', method: 'POST', redirect: '/devices', fetchUser: true },
+    loginData: { url: api_url + '/api/auth/sign_in', method: 'POST', redirect: '/home', fetchUser: true },
     logoutData: { redirect: '/login' },
     parseUserData: function (data) {
       return data || {}

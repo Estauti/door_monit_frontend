@@ -41,6 +41,8 @@
           :items="alerts"
           :fields="alerts_fields"
           class="mt-4"
+          show-empty
+          empty-text="Não ocorreram alertas"
         >
 
         <template v-slot:cell(finished_at)="row">
@@ -56,6 +58,18 @@
         </template>
 
         </b-table>
+
+        <paginate
+          v-model="pagination.page"
+          :page-count="pagination.total_pages"
+          :click-handler="getAlerts"
+          :prev-text="'Ante.'"
+          :next-text="'Próx.'"
+          :page-range="5"
+          :margin-pages="2"
+          page-class="pagination"
+          :container-class="'pagination justify-content-center'"
+        ></paginate>
       </b-col>
     </b-row>
   </div>
@@ -70,6 +84,10 @@ export default {
       device_search_id: null,
       alerts: [],
       devices: [],
+      pagination: {
+        total_pages: 0,
+        page: 1
+      },
       alerts_fields: [
         {
           key: 'device_name',
@@ -124,10 +142,15 @@ export default {
   methods: {
     getAlerts() {
       this.axios.get(`${api_url}/api/alerts.json`, {
-        device_id: this.device_search_id
+        params: {
+          device_id: this.device_search_id,
+          page: this.pagination.page
+        }
       })
         .then(response => {
           this.alerts = response.data;
+          console.log(response.headers)
+          this.pagination.total_pages = parseInt(response.headers['total-pages'])
         });
     },
     getDevices() {
