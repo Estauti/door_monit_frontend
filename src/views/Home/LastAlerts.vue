@@ -84,6 +84,24 @@ export default {
   },
   mounted() {
     this.getAlerts();
+    this.$cable.subscribe({
+      channel: 'AlertChannel',
+      room: 'public',
+      user_id: this.$auth.user().id
+    });
+  },
+  channels: {
+    AlertChannel: {
+      connected() {},
+      received(data) {
+        if (data.action == 'started') {
+          this.getAlerts();
+        }
+        else if (data.action == 'finished') {
+          this.updateAlertFinishedAt(data)
+        }
+      }
+    }
   },
   methods: {
     getAlerts() {
@@ -97,6 +115,12 @@ export default {
           this.alerts = response.data;
           this.pagination.total_pages = parseInt(response.headers['total-pages'])
         });
+    },
+    updateAlertFinishedAt(data) {
+      let index = this.alerts.findIndex(alert => alert.id == data.id)
+      if (index < 0) return;
+
+      this.alerts[index].finished_at = data.finished_at;
     }
   }
 }
