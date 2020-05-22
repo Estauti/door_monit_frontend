@@ -9,6 +9,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { api_url } from '@/helpers/api_url.js'
+import { websocket_url } from '@/helpers/websocket_url.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Toasted from 'vue-toasted';
@@ -49,7 +50,7 @@ Vue.use(ActionCableVue, {
   debugLevel: 'error',
   connectionUrl: () => {
     let token = localStorage.getItem('default_auth_token')
-    return `ws://localhost:3000/api/cable?jwt=${token}`
+    return `${websocket_url}/api/cable?jwt=${token}`
   },
   connectImmediately: true
 });
